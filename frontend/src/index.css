@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * =========================================================================
+ * AMICUS DESIGN SYSTEM: PALETTE PHILOSOPHY & TOKEN SPECIFICATION
+ * =========================================================================
+ * Rationale for Legal Professionals:
+ * 
+ * 1. Dominant Neutral (--color-bg-canvas: #F8F7F2, --color-bg-surface: #FFFFFF):
+ *    - Replaces stark fluorescent white (#FFF) with a tailored, warm archival neutral (Oyster/Parchment).
+ *    - Drastically reduces ocular fatigue during sustained, multi-hour contract review and redline sessions.
+ *    - Evokes the tactile credibility of premium legal bond paper.
+ * 
+ * 2. Deep Anchor Color (--color-text-heading / --color-anchor: #131B1E, Slate Body: #334048):
+ *    - Imparts uncompromising typographic contrast (AAA WCAG compliance) without harshness.
+ *    - Draws inspiration from classic judicial publications and authoritative law reports.
+ * 
+ * 3. Restrained Accent Color (--color-accent: #174D3F, Pale Mist: #EBF4F0):
+ *    - Eschews generic neon SaaS blue/purple gradients that feel frivolous to seasoned legal counsel.
+ *    - Deep Forest Spruce communicates institutional stability, fiduciary duty, and surgical precision.
+ *    - Pale Spruce Mist provides subtle focal contrast for badges, filters, and active tab states.
+ * 
+ * 4. Semantic Risk Flagging (Terracotta #9E3223 & Sienna #A66418):
+ *    - Strict boundary: warm terracotta and golden sienna are reserved exclusively for actionable risk
+ *      callouts and contract anomalies, preventing alarm fatigue across normal reading flows.
+ * =========================================================================
+ */
+
+:root {
+  /* --- 1. Dominant Neutral (Backgrounds & Canvas) --- */
+  --color-bg-canvas: #F8F7F2;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-subtle: #F1EFE8;
+  --color-bg-elevated: #FFFFFF;
+  --color-bg-overlay: rgba(19, 27, 30, 0.45);
+
+  /* --- 2. Deep Anchor Color (Typography & Structural Rules) --- */
+  --color-text-heading: #131B1E;
+  --color-text-body: #334048;
+  --color-text-muted: #64737D;
+  --color-text-subtle: #8D9A83;
+  --color-border: #E2DFD4;
+  --color-border-hover: #CCC7B7;
+  --color-border-strong: #A6A08D;
+
+  /* --- 3. Restrained Accent Color (Heritage Forest Spruce) --- */
+  --color-accent: #174D3F;
+  --color-accent-hover: #113B30;
+  --color-accent-active: #0B2921;
+  --color-accent-soft: #EBF4F0;
+  --color-accent-soft-hover: #DDECE6;
+  --color-accent-border: #B7D6CB;
+  --color-accent-foreground: #FFFFFF;
+
+  /* --- 4. Semantic Risk Indicators (Reserved for actual legal risk markup) --- */
+  --color-risk-severe: #9E3223;
+  --color-risk-severe-soft: #FBEDEA;
+  --color-risk-severe-border: #F0BDB4;
+  
+  --color-risk-caution: #A66418;
+  --color-risk-caution-soft: #FDF6E9;
+  --color-risk-caution-border: #F3D7A6;
+  
+  --color-risk-safe: #174D3F;
+  --color-risk-safe-soft: #EBF4F0;
+  --color-risk-safe-border: #B7D6CB;
+
+  /* --- 5. Geometry & Depth Tokens --- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow-subtle: 0 1px 3px rgba(19, 27, 30, 0.04), 0 1px 2px rgba(19, 27, 30, 0.02);
+  --shadow-card: 0 4px 16px -2px rgba(19, 27, 30, 0.05), 0 2px 6px -1px rgba(19, 27, 30, 0.03);
+  --shadow-elevated: 0 20px 40px -10px rgba(19, 27, 30, 0.08), 0 6px 16px -2px rgba(19, 27, 30, 0.04);
+  --shadow-glow: 0 0 0 3px rgba(23, 77, 63, 0.15);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-canvas);
+    color: var(--color-text-body);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text-heading);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom UI Utility Components adhering strictly to Tokens */
+.editorial-title {
+  font-family: 'Newsreader', Georgia, serif;
+}
+
+.editorial-italic {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Custom Fine-Line Grid Pattern */
+.bg-grid-parchment {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(19, 27, 30, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(19, 27, 30, 0.03) 1px, transparent 1px);
+}
+
+/* Document Reading Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Animations */
+@keyframes subtle-scan {
+  0% { transform: translateY(0%); opacity: 0.8; }
+  50% { transform: translateY(100%); opacity: 1; }
+  100% { transform: translateY(0%); opacity: 0.8; }
+}
+
+.animate-scan-line {
+  animation: subtle-scan 4s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.995); }
+}
+
+.animate-subtle-pulse {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}

@@ -1,0 +1,154 @@
+# =====================================================================
+# Amicus - Root .gitignore
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# Environment & Secrets (NEVER COMMIT SENSITIVE DATA)
+# ---------------------------------------------------------------------
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
+frontend/.env.local
+frontend/.env.production.local
+frontend/.env.development.local
+
+# Allow example files
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# Private keys, certificates & credentials
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+*.pub
+id_rsa
+id_ecdsa
+id_ed25519
+credentials.json
+client_secret*.json
+
+# ---------------------------------------------------------------------
+# Python & Virtual Environments
+# ---------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+venv*/
+.venv/
+.venv*/
+env/
+env*/
+ENV/
+ENV*/
+
+# ---------------------------------------------------------------------
+# Node & Frontend
+# ---------------------------------------------------------------------
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+dist-ssr/
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ---------------------------------------------------------------------
+# Testing, Coverage & Type Checkers
+# ---------------------------------------------------------------------
+.pytest_cache/
+backend/.pytest_cache/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+htmlcov/
+.mypy_cache/
+.pytype/
+.ruff_cache/
+
+# ---------------------------------------------------------------------
+# Databases & Local Data Stores
+# ---------------------------------------------------------------------
+*.db
+*.sqlite
+*.sqlite3
+*.rdb
+mongo-data/
+data/dumps/
+
+# ---------------------------------------------------------------------
+# Machine Learning Weights & Checkpoints (Heavy Binaries)
+# ---------------------------------------------------------------------
+checkpoints/
+model_checkpoints/
+outputs/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+wandb/
+
+# ---------------------------------------------------------------------
+# Operating System & IDE Specific Files
+# ---------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# IDEs
+.idea/
+*.sublime-workspace
+*.sublime-project
+.vscode/*
+!.vscode/settings.json
+

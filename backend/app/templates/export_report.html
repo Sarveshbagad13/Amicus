@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Amicus Legal Analysis Report - {{ document.filename }}</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 1.8cm 1.6cm 2cm 1.6cm;
+      @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 8pt;
+        color: #71717a;
+      }
+      @bottom-left {
+        content: "Amicus Legal Intelligence · Strictly Informational";
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 8pt;
+        color: #71717a;
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #18181b;
+      line-height: 1.55;
+      font-size: 9.5pt;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-bar {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .brand-title {
+      font-size: 20pt;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+      margin: 0 0 4px 0;
+    }
+
+    .brand-subtitle {
+      font-size: 9pt;
+      color: #64748b;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+    }
+
+    .meta-grid {
+      display: table;
+      width: 100%;
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .meta-row {
+      display: table-row;
+    }
+
+    .meta-cell {
+      display: table-cell;
+      padding: 3px 10px;
+      font-size: 8.5pt;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: #475569;
+    }
+
+    .meta-val {
+      color: #0f172a;
+    }
+
+    h2 {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #0f172a;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 5px;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .summary-box {
+      background: #ffffff;
+      padding: 4px 0;
+      color: #334155;
+      text-align: justify;
+    }
+
+    .summary-box p {
+      margin: 0 0 10px 0;
+    }
+
+    .takeaways-list {
+      margin: 8px 0 16px 0;
+      padding-left: 20px;
+    }
+
+    .takeaways-list li {
+      margin-bottom: 6px;
+      color: #1e293b;
+    }
+
+    table.clauses-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 8.5pt;
+    }
+
+    table.clauses-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      text-align: left;
+      padding: 8px 10px;
+      font-weight: 700;
+      border: 1px solid #cbd5e1;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    table.clauses-table td {
+      padding: 8px 10px;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    table.clauses-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .clause-cat {
+      font-weight: 700;
+      color: #0369a1;
+      white-space: nowrap;
+    }
+
+    .clause-desc {
+      font-size: 7.5pt;
+      color: #64748b;
+      margin-top: 3px;
+    }
+
+    .clause-excerpt {
+      color: #1e293b;
+      font-family: Georgia, serif;
+      font-size: 8pt;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      font-weight: 600;
+    }
+
+    .entities-container {
+      margin-top: 10px;
+    }
+
+    .entity-tag {
+      display: inline-block;
+      margin: 2px 4px 4px 0;
+      padding: 3px 8px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 8pt;
+    }
+
+    .entity-tag strong {
+      color: #0369a1;
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    .disclaimer {
+      margin-top: 30px;
+      padding: 10px 14px;
+      background: #fef2f2;
+      border-left: 3px solid #ef4444;
+      font-size: 8pt;
+      color: #991b1b;
+      border-radius: 0 4px 4px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-bar">
+    <h1 class="brand-title">AMICUS</h1>
+    <p class="brand-subtitle">Contract Intelligence & Legal Analysis Report</p>
+    
+    <div class="meta-grid">
+      <div class="meta-row">
+        <div class="meta-cell"><span class="meta-label">Document:</span> <span class="meta-val">{{ document.filename }}</span></div>
+        <div class="meta-cell"><span class="meta-label">Length:</span> <span class="meta-val">{{ document.page_count }} page(s) ({{ document.raw_text_length }} chars)</span></div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-cell"><span class="meta-label">Generated:</span> <span class="meta-val">{{ generated_date }}</span></div>
+        <div class="meta-cell"><span class="meta-label">Model Pipeline:</span> <span class="meta-val">{{ summary.model_name or "Amicus Neural Pipeline" }}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>1. Plain-English Contract Synthesis</h2>
+  <div class="summary-box">
+    {% for para in summary_paragraphs %}
+      <p>{{ para }}</p>
+    {% endfor %}
+  </div>
+
+  <h2>2. Key Executive Takeaways</h2>
+  <ul class="takeaways-list">
+    {% for item in summary.key_takeaways %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+
+  {% if entities and entities|length > 0 %}
+  <h2>3. High-Value Extracted Entities</h2>
+  <div class="entities-container">
+    {% for ent in entities %}
+      <div class="entity-tag">
+        <strong>{{ ent.entity_type }}:</strong> {{ ent.text }}
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <h2>4. Core Provisions & Clause Classifications (CUAD)</h2>
+  {% if clauses and clauses|length > 0 %}
+  <table class="clauses-table">
+    <thead>
+      <tr>
+        <th style="width: 28%;">Category & Description</th>
+        <th style="width: 12%; text-align: center;">Page</th>
+        <th style="width: 60%;">Verbatim Excerpt</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for clause in clauses %}
+      <tr>
+        <td>
+          <div class="clause-cat">{{ clause.category }}</div>
+          {% if clause.description %}
+            <div class="clause-desc">{{ clause.description }}</div>
+          {% endif %}
+        </td>
+        <td style="text-align: center; font-weight: 600;">P. {{ clause.page_number or 1 }}</td>
+        <td>
+          <div class="clause-excerpt">"{{ clause.clause_text }}"</div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p style="color: #64748b; font-style: italic;">No specific standard commercial clauses met extraction thresholds.</p>
+  {% endif %}
+
+  <div class="disclaimer">
+    <strong>INFORMATIONAL DISCLAIMER:</strong> This report is generated through automated deterministic legal text extraction and neural language modeling. Amicus is not an attorney and does not provide legal advice, representation, or formal opinions. All synthesized summaries, risk ratings, and extracted terms must be verified against original counterpart documentation by qualified legal counsel prior to execution.
+  </div>
+
+</body>
+</html>
