@@ -85,19 +85,18 @@ python -m venv venv
 
 # Activate virtual environment
 # On Windows (PowerShell):
-.\venv\Scripts\Activate.ps1
+.\venv\Scripts\Activate.bat
 # On macOS / Linux:
 source venv/bin/activate
 
 # Install dependencies
-pip install -r requirements.txt
+uv add -r requirements.txt
 
 # Download required spaCy language model
 python -m spacy download en_core_web_sm
 
 # Configure environment variables
-cp .env.example .env
-```
+cp .env.example .env```
 
 Edit `backend/.env` with your preferred configuration (secrets, MongoDB URI, port).
 
@@ -155,13 +154,6 @@ python scripts/evaluate_models.py
 ```
 
 ---
-
-## 🔐 Security & Privacy
-
-- **Zero Secret Ingestion:** All sensitive keys, tokens, and environment parameters are loaded strictly through environment variables.
-- **Git Shielding:** The repository includes comprehensive `.gitignore` rules preventing `.env` files, database dumps, model weight binaries, local caches, and private keys from being committed.
-- **Safe Fallbacks:** Automated tests utilize mock instances and isolated test namespaces.
-
 ---
 
 ## 📄 License
